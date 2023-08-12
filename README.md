@@ -1,5 +1,5 @@
-## (0) Product Name
-- Memory with AI -> MEA
+## Memory with AI -> MEA 📚
+
 
 ## (1) Function
 1. extract main sentence (주요 문장 추출) (TextRank)
