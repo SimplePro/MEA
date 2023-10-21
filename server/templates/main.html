@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
+    <title>MEA prototype</title>
+    <script src="{{url_for('static', filename='JS/script.js')}}"></script>
+</head>
+<body>
+    <header>
+        <div id="header_container">
+            <div id="mea">Memory with AI 📚</div>
+            <div id="test_name">2023년 2학기 기말고사</div>
+        </div>
+    </header>
+    <main>
+        <img src="{{url_for('static', filename='icons/add-button.png')}}" id="add_button" style="height: 60px; width: 60px;" alt="add-button">
+        <div id="dialogue_container">
+            <div id="dialogue">
+                <img id="dialogue_img" src="{{url_for('static', filename='images/karina-from-aespa-life-s-too-short-mv-photoshoot-girls-album-wallpaper-2560x1440_51.jpg')}}" alt="karina">
+                <div id="dialogue_title">수능_감잡기 2023 4강</div>
+                <hr>
+                <div id="dialogue_desc">/images/karina-from-aespa-life-s-too-short-mv-photoshoot-girls-album-wallpaper-2560x1440_51.jpg</div>
+            </div>
+            <div id="dialogue">
+                <img id="dialogue_img" src="{{url_for('static', filename='images/f47b80b3-ff53-458a-93ef-de69af38b83a.jpg')}}" alt="newjeans">
+                <div id="dialogue_title">수능_감잡기 2023 5강</div>
+                <hr>
+                <div id="dialogue_desc">images/f47b80b3-ff53-458a-93ef-de69af38b83a.jpg</div>
+            </div>
+            <div id="dialogue"></div>
+            <div id="dialogue"></div>
+            <div id="dialogue"></div>
+            <div id="dialogue"></div>
+            <div id="dialogue"></div>
+        </div>
+    </main>
+
+</body>
+</html>
