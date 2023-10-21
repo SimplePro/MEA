@@ -1,0 +1,56 @@
+body {
+    background-color: #000000;
+    color: #FFFFFF;
+    overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0px;
+}
+
+header {
+    border-bottom: 1px solid #585858;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    background-color: #000000;
+}
+
+#header_container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#mea {
+    display: flex;
+    font-size: 30px;
+    width: 300px;
+    vertical-align: middle;
+}
+
+#dialogue_title {
+    text-align: center;
+    width: 250px;
+    display: flex;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+#test_name {
+    display: flex;
+    width: 250px;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+main {
+    padding-top: 60px;
+    height: 100%;
+}
+
+#dialogue_main {
+    margin: 30px auto;
+    width: 70%;
+    border: 1px solid #585858;
+    border-radius: 20px;
+    padding: 20px 40px;
+}

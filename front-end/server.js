@@ -15,7 +15,9 @@ var server = http.createServer(function (req, res) {
     const main = fs.readFileSync('./static/main.html');
     const main2 = fs.readFileSync('./static/main2.html');
     const style = fs.readFileSync('./static/style.css');
+    const style2 = fs.readFileSync('./static/style2.css');
     const script = fs.readFileSync('./static/script.js');
+    const script2 = fs.readFileSync('./static/script2.js');
 
     if (resource == '/main'){
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -25,9 +27,17 @@ var server = http.createServer(function (req, res) {
         res.writeHead(200, { 'Content-Type': 'text/css'});
         res.end(style);
     }
+    else if (resource == '/style2.css'){
+        res.writeHead(200, { 'Content-Type': 'text/css'});
+        res.end(style2);
+    }
     else if (resource == '/script.js'){
         res.writeHead(200, {'Content-Type':'text/javascript'});
         res.end(script);
+    }
+    else if (resource == '/script2.js'){
+        res.writeHead(200, {'Content-Type':'text/javascript'});
+        res.end(script2);
     }
     else if (resource == '/main2'){
         res.writeHead(200, { 'Content-Type': 'text/html' });
