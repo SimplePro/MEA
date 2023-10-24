@@ -2,7 +2,7 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 import random
 
 def get_scramble_sentence(word_tokens):
-    return " ".join(random.sample(word_tokens, len(word_tokens)))
+    return " / ".join(random.sample(word_tokens, len(word_tokens)))
 
 if __name__ == '__main__':
 
