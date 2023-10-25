@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 from ast import literal_eval
 import json
 
@@ -64,4 +65,13 @@ def upload_passage():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    
+    CORS(app, resources={r"*": {"origins":"*"}})
+    
+    app.run(
+        host="0.0.0.0",
+        debug=True,
+        port=5000
+        # ssl_context=ssl_context
+    )
