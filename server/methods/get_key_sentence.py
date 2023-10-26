@@ -110,3 +110,6 @@ if __name__ == '__main__':
     
     scores, key_sentence = get_key_sentence(passage)
     print(scores, key_sentence)
+
+    # summarize sentences using chatgpt api
+    # and then compare between summary and each sentence.
