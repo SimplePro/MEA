@@ -2,22 +2,28 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from ast import literal_eval
 import json
+from nltk.tokenize import word_tokenize, sent_tokenize
 
-from methods import preprocessing, get_key_image
+from methods import preprocessing, get_key_image, make_blank, make_scramble
 
 
 app = Flask(__name__)
 
+stopwords = preprocessing.get_stopwords()
+
+# get_db data
 def get_db():
     with open("./db/db.json", "r") as f:
         db_dict = json.load(f)
 
     return db_dict
 
+# save db data
 def save_db(db_dict):
     with open("./db/db.json", "w") as f:
         json.dump(db_dict, f)
 
+# upload db data
 def upload_passage_to_db(title, passage) -> bool:
     db_dict = get_db()
 
@@ -45,6 +51,7 @@ def upload_passage_to_db(title, passage) -> bool:
 def home():
     return render_template('main.html')
 
+# get passages in db data
 @app.route("/get_passages", methods=["GET"])
 def get_passages():
     if request.method == "GET":
@@ -52,6 +59,7 @@ def get_passages():
        return jsonify(db_dict)
     
 
+# upload passage to db
 @app.route("/upload_passage", methods=["POST"])
 def upload_passage():
     if request.method == "POST":
@@ -62,6 +70,30 @@ def upload_passage():
 
 
         return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+
+@app.route("/get_blank", methods=["POST"])
+def get_blank():
+    if request.method == "POST":
+        data = literal_eval(request.data.decode("utf8"))
+        word_tokens = word_tokenize(data["passage"])
+        blank_index = make_blank.get_blank_index(word_tokens, data["n_blank"], stopwords)
+        result_sentence, answer_list = make_blank.generate_blank(data["passage"], word_tokens, blank_index)
+
+        return json.dumps({"result": result_sentence, "answer": answer_list})
+
+        
+@app.route("/get_scramble", methods=["POST"])
+def get_scramble():
+    if request.method == "POST":
+        data = literal_eval(request.data.decode("utf8"))
+        sentence_index = data["sentence_index"]
+        sentence_tokens = sent_tokenize(data["passage"])
+
+        sentence = sentence_tokens[sentence_index]
+        word_tokens = sentence.split()
+        scramble = make_scramble.get_scramble_sentence(word_tokens)
+        
+        return json.dumps({"scramble": scramble, "answer": sentence})
 
 
 if __name__ == '__main__':
