@@ -18,8 +18,9 @@ def get_blank_index(word_tokens, n_blank, stopwords):
 
     if len(no_stopwords_index) < n_blank: return None
 
-    # ------------------ duplication problem should be solved! ------------------------
-    return sorted(random.choices(no_stopwords_index, k=n_blank))
+    random.shuffle(no_stopwords_index) 
+
+    return no_stopwords_index[:n_blank]
 
 def generate_blank(sentences, word_tokens, blank_index):
     result = ""
@@ -60,4 +61,3 @@ if __name__ == '__main__':
 
 
     print(generate_blank(sentences, word_tokens, blank_index))
-    
