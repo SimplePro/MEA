@@ -1,5 +1,4 @@
 from nltk.tokenize import word_tokenize
-from preprocessing import get_stopwords
 import random
 
 def is_stopwords(word, stopwords):
@@ -51,6 +50,8 @@ def generate_blank(sentences, word_tokens, blank_index):
 
 
 if __name__ == '__main__':
+    from preprocessing import get_stopwords
+    
     stopwords = get_stopwords()
 
     sentences = input("sentences: ")
