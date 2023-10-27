@@ -21,7 +21,7 @@ class Glove:
 
     def __init__(self):
 
-        with open("./glove_embedding_dict.pkl", "rb") as f:
+        with open("/home/kdhsimplepro/kdhsimplepro/kyunggi_highschool/CodingFestival2023/MEA/server/methods/glove_embedding_dict.pkl", "rb") as f:
             self.word_embeddings = pickle.load(f)
 
     def get_scores(self, word, synonym_words):
