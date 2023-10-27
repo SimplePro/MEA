@@ -17,7 +17,7 @@ def summarize_passage(passage):
 
 if __name__ == '__main__':
 
-    with open("../db/passages/2022-09-1-31.txt", "r") as f:
+    with open("../db/passages/2022-09-1-21.txt", "r") as f:
         passage = f.readline()
 
     summary = summarize_passage(passage)
