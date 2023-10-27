@@ -2,12 +2,6 @@ import numpy as np
 
 from nltk.tokenize import word_tokenize, sent_tokenize
 
-from sklearn.metrics.pairwise import cosine_similarity
-
-import pickle
-
-import networkx as nx
-
 from sentence_transformers import SentenceTransformer, util
 
 # model = SentenceTransformer('multi-qa-MiniLM-L6-cos-v1')
