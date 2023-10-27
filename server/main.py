@@ -4,7 +4,7 @@ from ast import literal_eval
 import json
 from nltk.tokenize import word_tokenize, sent_tokenize
 
-from methods import preprocessing, get_key_image, make_blank, make_scramble
+from methods import preprocessing, get_key_image, make_blank, make_scramble, summarize_text, get_key_sentence, get_synonyms
 
 
 app = Flask(__name__)
@@ -30,15 +30,16 @@ def upload_passage_to_db(title, passage) -> bool:
     if title in db_dict.keys(): return False
 
     # key_sentence = ~~
-    # summarize = ~~
-    # image = get_key_image.get_image(f'illustration image representing the situation: "{summarize}"')
-    # string_image = preprocessing.RGB2String(image)
+    summary = summarize_text.summarize_passage(passage)
+    sent_scores, key_sentence = get_key_sentence.get_key_sentence(passage, summary)
+    image = get_key_image.get_image(f'illustration image representing the situation: "{summary}"')
+    string_image = preprocessing.RGB2String(image)
 
     data = {
         "passage": passage,
-        # "key_sentence": key_sentence,
-        # "summarize": summarize,
-        # "image": string_image
+        "summary": summary,
+        "key_sentence": key_sentence,
+        "image": string_image
     }
 
     db_dict[title] = data
@@ -68,7 +69,6 @@ def upload_passage():
 
         if is_ok == False: return json.dumps({"success": False}), 400, {"ContentType": "application/json"}
 
-
         return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @app.route("/get_blank", methods=["POST"])
@@ -81,7 +81,7 @@ def get_blank():
 
         return json.dumps({"result": result_sentence, "answer": answer_list})
 
-        
+
 @app.route("/get_scramble", methods=["POST"])
 def get_scramble():
     if request.method == "POST":
@@ -95,6 +95,15 @@ def get_scramble():
         
         return json.dumps({"scramble": scramble, "answer": sentence})
 
+@app.route("/get_synonyms", methods=["POST"])
+def get_synonyms_server():
+    if request.method == "POST":
+        data = literal_eval(request.data.decode("utf8"))
+        word = data["word"]
+
+        scores, synonyms = get_synonyms.get_synonyms(word)
+
+        return json.dumps({"synonyms": synonyms})
 
 if __name__ == '__main__':
     # app.run(debug=True)
