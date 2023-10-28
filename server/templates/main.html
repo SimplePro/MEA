@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
     <title>MEA prototype</title>
-    <script src="{{url_for('static', filename='JS/script.js')}}"></script>
+    <script src="{{url_for('static', filename='JS/script.js')}}" defer></script>
 </head>
 <body>
     <header>
@@ -16,8 +16,8 @@
     </header>
     <main>
         <img src="{{url_for('static', filename='icons/add-button.png')}}" id="add_button" style="height: 60px; width: 60px;" alt="add-button">
-        <div id="dialogue_container">
-            <div id="dialogue">
+        <div id="dialogue_container", class="dialogue_container">
+            <!-- <div id="dialogue">
                 <img id="dialogue_img" src="{{url_for('static', filename='images/karina-from-aespa-life-s-too-short-mv-photoshoot-girls-album-wallpaper-2560x1440_51.jpg')}}" alt="karina">
                 <div id="dialogue_title">수능_감잡기 2023 4강</div>
                 <hr>
@@ -33,7 +33,7 @@
             <div id="dialogue"></div>
             <div id="dialogue"></div>
             <div id="dialogue"></div>
-            <div id="dialogue"></div>
+            <div id="dialogue"></div> -->
         </div>
     </main>
 
