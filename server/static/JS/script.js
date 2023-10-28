@@ -64,7 +64,24 @@ fetch("http://112.187.184.213:5000/get_passages", {
 
 
 function move (event) {
-    title = event.srcElement.parentElement.getElementsByClassName("title")[0].innerHTML
+    
+    switch(event.srcElement.id) {
+        case "dialogue_title":
+            title = event.srcElement.innerHTML
+            break
+
+        case "dialogue_desc":
+            title = event.srcElement.parentElement.getElementsByClassName("title")[0].innerHTML
+            break
+
+        case "dialogue_img":
+            title = event.srcElement.parentElement.getElementsByClassName("title")[0].innerHTML
+            break
+
+        case "dialogue":
+            title = event.srcElement.getElementsByClassName("title")[0].innerHTML
+    }
+
+    console.log(title)
     location.href = "?title=" + title
-    // console.log(title)
 }

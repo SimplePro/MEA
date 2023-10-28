@@ -90,7 +90,9 @@ def get_blank():
     if request.method == "POST":
         data = literal_eval(request.data.decode("utf8"))
         word_tokens = word_tokenize(data["passage"])
-        blank_index = make_blank.get_blank_index(word_tokens, data["n_blank"], stopwords)
+        n_blank = random.randint(int(len(word_tokens)*0.2), int(len(word_tokens)*0.4))
+        # blank_index = make_blank.get_blank_index(word_tokens, data["n_blank"], stopwords)
+        blank_index = make_blank.get_blank_index(word_tokens, n_blank, stopwords)
         result_sentence, answer_list = make_blank.generate_blank(data["passage"], word_tokens, blank_index)
 
         return json.dumps({"result": result_sentence, "answer": answer_list})
