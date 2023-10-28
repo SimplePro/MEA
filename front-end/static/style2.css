@@ -55,6 +55,22 @@ main {
     padding: 20px 40px;
 }
 
+#dialogue_sum {
+    margin: 30px auto;
+    width: 70%;
+    border: 1px solid #585858;
+    border-radius: 20px;
+    padding: 20px 40px;
+}
+
+#dialogue_key {
+    margin: 30px auto;
+    width: 70%;
+    border: 1px solid #585858;
+    border-radius: 20px;
+    padding: 20px 40px;
+}
+
 .btn {
     display: flex;
     width: 120px;

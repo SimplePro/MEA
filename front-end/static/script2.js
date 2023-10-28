@@ -39,8 +39,29 @@ temp.innerHTML = `<p id="sentence" style="text-align: justify; font-size: 30px; 
 document.getElementById("dialogue_main").appendChild(temp);
 //}
 
+var dialogue_sum = document.createElement("p");
+dialogue_sum.setAttribute("id","dialogue_summary_text");
+dialogue_sum.setAttribute("style","text-align: justify; font-size: 30px; line-height: 40px;");
+dialogue_sum.innerText = `요약문: {{summary}}`;
+document.getElementById("dialogue_sum").appendChild(dialogue_sum);
+
+var dialogue_key_sentence = document.createElement("p");
+dialogue_key_sentence.setAttribute("id","dialogue_key_sentence");
+dialogue_key_sentence.setAttribute("style","text-align: justify; font-size: 30px; line-height: 40px;");
+dialogue_key_sentence.innerText = `주요 문장: {{key_sentence}}`;
+document.getElementById("dialogue_key").appendChild(dialogue_key_sentence);
+
+
+
+
+
+
+
+
 function blank_change() {
     document.getElementById("btn").innerHTML = '';
+    document.getElementById("dialogue_sum").setAttribute("style","display: none;");
+    document.getElementById("dialogue_key").setAttribute("style","display: none;");
 
     fetch("http://112.187.184.213:5000/get_blank", {
         method: "POST",
@@ -115,8 +136,12 @@ function binkhan_dab_matchugi() {
 
 function scramble_change() {
     document.getElementById("btn").innerHTML = '';
+
     document.getElementById("answer_section").innerHTML = '';
     document.getElementById("right_wrong_section").innerHTML = '';
+
+    document.getElementById("dialogue_sum").setAttribute("style","display: none;");
+    document.getElementById("dialogue_key").setAttribute("style","display: none;");
 
     fetch("http://112.187.184.213:5000/get_scramble", {
         method: "POST",
@@ -165,7 +190,7 @@ function scramble_dab_matchugi() {
     // var right_wrong = document.createElement('div');
     // right_wrong.setAttribute("id","right_wrong");
     // right_wrong.setAttribute("style","color: #FFFFFF; display: flex;");
-
+    document.getElementById("right_wrong_section").innerHTML = '';
 
     var right_wrong_sc = document.createElement('div');
     right_wrong_sc.setAttribute("id", "right_wrong_sc");
