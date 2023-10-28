@@ -6,6 +6,8 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 
 from methods import preprocessing, get_key_image, make_blank, make_scramble, summarize_text, get_key_sentence, get_synonyms
 
+import random
+
 
 app = Flask(__name__)
 
@@ -48,9 +50,21 @@ def upload_passage_to_db(title, passage) -> bool:
 
     return True
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def home():
-    return render_template('main.html')
+    parameter_dict = request.args.to_dict()
+    if len(parameter_dict) == 0:
+        return render_template('main.html')
+
+    else:
+        title = parameter_dict["title"]
+        db = get_db()
+        return render_template('main2.html',
+                               title=title,
+                               passage=db[title]["passage"],
+                               key_sentence=db[title]["key_sentence"],
+                               summary=db[title]["summary"]
+        )
 
 # get passages in db data
 @app.route("/get_passages", methods=["GET"])
@@ -58,7 +72,7 @@ def get_passages():
     if request.method == "GET":
        db_dict = get_db()
        return jsonify(db_dict)
-    
+
 
 # upload passage to db
 @app.route("/upload_passage", methods=["POST"])
@@ -86,8 +100,9 @@ def get_blank():
 def get_scramble():
     if request.method == "POST":
         data = literal_eval(request.data.decode("utf8"))
-        sentence_index = data["sentence_index"]
+        # sentence_index = data["sentence_index"]
         sentence_tokens = sent_tokenize(data["passage"])
+        sentence_index = random.randint(0, len(sentence_tokens)-1)
 
         sentence = sentence_tokens[sentence_index]
         word_tokens = sentence.split()

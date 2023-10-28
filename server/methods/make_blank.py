@@ -34,7 +34,7 @@ def generate_blank(sentences, word_tokens, blank_index):
 
         else:
             if word_token_index in blank_index:
-                print(word_token_index)
+                # print(word_token_index)
                 answer.append(word_tokens[word_token_index])
                 result += "_" * len(word_tokens[word_token_index])
             

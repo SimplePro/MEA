@@ -6,8 +6,7 @@
 // }
 
 var dialogue_container = document.getElementsByClassName("dialogue_container")[0]
-
-var passages = {}
+let passages = new Object()
 
 fetch("http://112.187.184.213:5000/get_passages", {
     method: "GET",
@@ -17,12 +16,13 @@ fetch("http://112.187.184.213:5000/get_passages", {
 })
 .then((response) => response.json())
 .then((data) => {
-    passages = data
-    // console.log(passages)
-    for(key in passages) {
 
-        // console.log(data[key].image)
+    passages = JSON.parse(JSON.stringify(data))
+
+    for(key in data) {
+
         var dialogue = document.createElement("div")
+        
         dialogue.setAttribute("id", "dialogue")
         
         var img = document.createElement("img")
@@ -44,27 +44,21 @@ fetch("http://112.187.184.213:5000/get_passages", {
         dialogue.appendChild(hr)
         dialogue.appendChild(desc)
 
-        dialogue_container.appendChild(dialogue)
+        dialogue.addEventListener("click", (event) => move())
 
-        // console.log(data[key])
+        dialogue_container.appendChild(dialogue)
     }
 })
 .catch(error => {
     console.log(error)
 })
 
-console.log("hello")
-
-for(key in passages){
-    console.log(key)
-    console.log(passages[key])
-}
-
-// console.log(passages["2022-09-1-24"].key_sentence)
-
-// console.log(passages)
+// dialogue_container.addEventListener('click', (e) => {
+//     console.log(e.currentTarget.children[1])
+// })
 
 
 function move () {
-    location.href = "{{url_for('static', filename='templates/main2.html')}}";
+    // location.href = "{{url_for('static', filename='templates/main2.html')}}";
+    location.href = "title?"
 }
