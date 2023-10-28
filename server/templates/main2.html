@@ -9,8 +9,6 @@
     <title>Dialogue Detail</title>
 </head>
 
-<!-- back-arrow img from free-icon-back-angle-arrow-in-square-interface-button-60789.png -->
-
 <body>
     <header>
         <div id="header_container">
@@ -28,7 +26,6 @@
                 <p style="margin: 0 auto;">2023년 2학기 기말고사</p>
             </div>
             <hr style="border-left: 1px solid #585858; height: 30px; margin: 0 5px;">
-            <!-- title 받아오는걸로 수정 -->
             <div id="dialogue_title">
                 <p style="margin: 0 auto;">{{title}}</p>
             </div>
@@ -37,9 +34,19 @@
     </header>
     <main>
         <div id="dialogue_main">
-            <!-- passage 받아오는 걸로 수정 -->
             <p style="text-align: justify; font-size: 30px; line-height: 40px;" id="dialogue_text">
                 {{passage}}
+            </p>
+        </div>
+
+        <div id="dialogue_sum">
+            <p id="dialogue_summary_text" style="text-align: justify; font-size: 30px; line-height: 40px;">
+                요약문: {{summary}}
+            </p>
+        </div>
+        <div id="dialogue_key">
+            <p id="dialogue_key_sentence" style="text-align: justify; font-size: 30px; line-height: 40px;">
+                주요 문장: {{key_sentence}}
             </p>
         </div>
         <div id="btn" style="margin: 10px 0; display: flex;">
@@ -47,11 +54,12 @@
                 <button type="button" onclick="blank_change()" class="btn" id="blank_btn">
                     <p style="font-size: 20px; margin: auto auto;">빈칸</p>
                 </button>
-                <button type="button" class="btn" id="scramble_btn">
+                <button type="button" onclick="scramble_change()" class="btn" id="scramble_btn">
                     <p style="font-size: 20px; margin: auto auto;">스크램블</p>
                 </button>
             </div>
         </div>
+        <div id="right_wrong_section"></div>
         <div id="answer_section"></div>
     </main>
 </body>
