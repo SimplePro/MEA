@@ -2,6 +2,9 @@ const dialogue = "A fascinating species of water flea exhibits a kind of flexibi
 //const dialogue_blank = "Is the ________ always right? When customers return a broken _______ to a famous _______, which _____ kitchen and bathroom fixtures, the company nearly always ______ a ___________ to maintain good customer _________. Still, “there are _____ you’ve got to say ‘no,’” explains the warranty expert of the company, such as when a product is undamaged or has been abused. ____________ ______ _____, who owns an _________ company, says, “_____ the customer is ‘always’ right, sometimes you just have to fire a customer.” When Thorp has tried everything to _______ a complaint and realizes that the customer will be dissatisfied no ______ what, she returns her attention to the rest of her customers, who she says are “the reason for my success."
 var dialogue_blank = '';
 var dialogue_blank_json = new Object();
+
+var dialogue_scramble = '';
+var dialogue_scramble_json = new Object();
 /*
 function splitTextIntoSentences(text) {
     // 문장 구분자로 텍스트를 나눕니다.
@@ -45,14 +48,13 @@ function blank_change() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            passage: dialogue,
-            n_blank: 10
+            passage: dialogue
         })
     })
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
-            dialogue_blank_json=data;
+            dialogue_blank_json = data;
             // const json = /÷data;
             dialogue_blank = data.result;
 
@@ -69,34 +71,120 @@ function blank_change() {
         })
 
     var input_section = document.createElement("input");
-    input_section.setAttribute("id","input_section");
+    input_section.setAttribute("id", "input_section");
+    input_section.setAttribute("onkeyup","if(window.event.keyCode == 13){binkhan_dab_matchugi()}");
     document.getElementById("answer_section").appendChild(input_section);
 
     var answer_btn = document.createElement("button");
-    answer_btn.setAttribute("id","answer_btn");
-    answer_btn.setAttribute("onclick","binkhan_dab_matchugi()");
+    answer_btn.setAttribute("id", "answer_btn");
+    answer_btn.setAttribute("onclick", "binkhan_dab_matchugi()");
     answer_btn.innerHTML = `<p style="font-size: 15px; margin: auto auto;">다음</p>`
     document.getElementById("answer_section").appendChild(answer_btn);
 }
 
 var index = 0;
-var right_wrong = document.createElement('div');
-right_wrong.setAttribute("id","right_wrong");
-right_wrong.setAttribute("style","color: #FFFFFF; display: flex;");
-document.getElementById("answer_section").appendChild(right_wrong);
+function binkhan_dab_matchugi() {
+    document.getElementById("right_wrong_section").innerHTML = '';
 
-function binkhan_dab_matchugi () {
+    var right_wrong = document.createElement('div');
+    right_wrong.setAttribute("id", "right_wrong");
+    right_wrong.setAttribute("style", "color: #FFFFFF; display: flex;");
+    document.getElementById("right_wrong_section").appendChild(right_wrong);
     // var right_wrong = document.createElement('div');
     // right_wrong.setAttribute("id","right_wrong");
     // right_wrong.setAttribute("style","color: #FFFFFF; display: flex;");
-    const input = document.getElementById("input_section").value;
+    var input = document.getElementById("input_section").value;
     console.log(input, index);
-    if (dialogue_blank_json.answer[index]==input) {
+    if (dialogue_blank_json.answer[index] == input) {
         index++;
         right_wrong.innerText = "정답!";
+        document.getElementById("input_section").value = null;
     }
     else {
-        index+=0;
+        index += 0;
         right_wrong.innerText = "다시 시도하세요.";
+        document.getElementById("input_section").value = null;
+    }
+}
+
+
+
+
+
+
+
+function scramble_change() {
+    document.getElementById("btn").innerHTML = '';
+    document.getElementById("answer_section").innerHTML = '';
+    document.getElementById("right_wrong_section").innerHTML = '';
+
+    fetch("http://112.187.184.213:5000/get_scramble", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            passage: dialogue
+        })
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            dialogue_scramble_json = data;
+            // const json = /÷data;
+            dialogue_scramble = data.scramble;
+
+            let dialogue_main = document.getElementById("dialogue_main");
+            dialogue_main.innerHTML = "";
+
+            var newElement_scramble = document.createElement("p");
+            newElement_scramble.innerHTML = `<p style="text-align: justify; font-size: 30px; line-height: 40px;">${dialogue_scramble}</p>`;
+            document.getElementById("dialogue_main").appendChild(newElement_scramble);
+            console.log(dialogue_scramble);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+    var input_section = document.createElement("input");
+    input_section.setAttribute("id", "input_section");
+    input_section.setAttribute("onkeyup","if(window.event.keyCode == 13){scramble_dab_matchugi()}");
+    document.getElementById("answer_section").appendChild(input_section);
+
+    var answer_btn = document.createElement("button");
+    answer_btn.setAttribute("id", "answer_btn");
+    answer_btn.setAttribute("onclick", "scramble_dab_matchugi()");
+    answer_btn.innerHTML = `<p style="font-size: 15px; margin: auto auto;">다음</p>`
+    document.getElementById("answer_section").appendChild(answer_btn);
+}
+
+
+var idx = 0;
+
+function scramble_dab_matchugi() {
+    // var right_wrong = document.createElement('div');
+    // right_wrong.setAttribute("id","right_wrong");
+    // right_wrong.setAttribute("style","color: #FFFFFF; display: flex;");
+
+
+    var right_wrong_sc = document.createElement('div');
+    right_wrong_sc.setAttribute("id", "right_wrong_sc");
+    right_wrong_sc.setAttribute("style", "color: #FFFFFF; display: flex;");
+    document.getElementById("right_wrong_section").appendChild(right_wrong_sc);
+
+    var input = document.getElementById("input_section").value;
+    console.log(input, idx);
+    if (dialogue_scramble_json.answer == input) {
+        idx++;
+        right_wrong_sc.innerText = "정답!";
+        scramble_change();
+        document.getElementById("input_section").value = null;
+
+    }
+    else {
+        idx += 0;
+        right_wrong_sc.innerText = "다시 시도하세요.";
+        document.getElementById("input_section").value = null;
+
     }
 }
