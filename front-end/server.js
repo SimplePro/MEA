@@ -39,6 +39,16 @@ var server = http.createServer(function (req, res) {
         res.writeHead(200, {'Content-Type':'text/javascript'});
         res.end(script2);
     }
+    else if (resource == '/get_blank'){
+        var body = "";
+        req.on('data', function (data) {
+            body += data;
+        });
+        req.on('end', function() {
+            var post = JSON.parse(body);
+            console.log(post);
+        });
+    }
     else if (resource == '/main2'){
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(main2);

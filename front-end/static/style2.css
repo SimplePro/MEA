@@ -54,3 +54,23 @@ main {
     border-radius: 20px;
     padding: 20px 40px;
 }
+
+.btn {
+    display: flex;
+    width: 120px;
+    height: 60px;
+    margin: 10px 20px;
+    border: 5px solid #585858;
+    border-radius: 20px;
+    align-items: center;
+}
+
+#blank_btn {
+    color: #FFFFFF;
+    background-color: red;
+}
+
+#scramble_btn {
+    color: #fff;
+    background-color: green;
+}
