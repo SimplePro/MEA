@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style2.css')}}">
+    <script defer src="{{url_for('static', filename='JS/script2.js')}}"></script>
+    <title>Dialogue Detail</title>
+</head>
+
+<!-- back-arrow img from free-icon-back-angle-arrow-in-square-interface-button-60789.png -->
+
+<body>
+    <header>
+        <div id="header_container">
+            <!-- a 태크 수정 & onclick -->
+            <div id="back_button" style="background-color: #FFFFFF; align-items: center" onclick="history.back()">
+                <img style="vertical-align: middle;"
+                    src="{{url_for('static', filename='icons/back_arrow.png')}}" alt="back">
+            </div>
+            <hr style="border-left: 1px solid #585858; height: 30px; margin: 0 5px;">
+            <div id="mea">
+                <p style="margin: 0 auto;">Memory with AI 📚</p>
+            </div>
+            <hr style="border-left: 1px solid #585858; height: 30px; margin: 0 5px;">
+            <div id="test_name">
+                <p style="margin: 0 auto;">2023년 2학기 기말고사</p>
+            </div>
+            <hr style="border-left: 1px solid #585858; height: 30px; margin: 0 5px;">
+            <!-- title 받아오는걸로 수정 -->
+            <div id="dialogue_title">
+                <p style="margin: 0 auto;">{{title}}</p>
+            </div>
+            <hr style="border-left: 1px solid #585858; height: 30px; margin: 0 5px;">
+        </div>
+    </header>
+    <main>
+        <div id="dialogue_main">
+            <!-- passage 받아오는 걸로 수정 -->
+            <p style="text-align: justify; font-size: 30px; line-height: 40px;" id="dialogue_text">
+                {{passage}}
+            </p>
+        </div>
+        <div id="btn" style="margin: 10px 0; display: flex;">
+            <div style="margin: 0px auto; display: flex; align-items: center;">
+                <button type="button" onclick="blank_change()" class="btn" id="blank_btn">
+                    <p style="font-size: 20px; margin: auto auto;">빈칸</p>
+                </button>
+                <button type="button" class="btn" id="scramble_btn">
+                    <p style="font-size: 20px; margin: auto auto;">스크램블</p>
+                </button>
+            </div>
+        </div>
+        <div id="answer_section"></div>
+    </main>
+</body>
+
+</html>

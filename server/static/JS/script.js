@@ -19,11 +19,15 @@ fetch("http://112.187.184.213:5000/get_passages", {
 
     passages = JSON.parse(JSON.stringify(data))
 
+    var index = 0
+
     for(key in data) {
 
         var dialogue = document.createElement("div")
         
         dialogue.setAttribute("id", "dialogue")
+        dialogue.setAttribute("class", "dialogue" + index.toString())
+        index++;
         
         var img = document.createElement("img")
         img.setAttribute("id", "dialogue_img")
@@ -31,6 +35,7 @@ fetch("http://112.187.184.213:5000/get_passages", {
 
         var title = document.createElement("div")
         title.setAttribute("id", "dialogue_title")
+        title.setAttribute("class", "title")
         title.innerHTML = key
 
         var desc = document.createElement("div")
@@ -44,7 +49,7 @@ fetch("http://112.187.184.213:5000/get_passages", {
         dialogue.appendChild(hr)
         dialogue.appendChild(desc)
 
-        dialogue.addEventListener("click", (event) => move())
+        dialogue.addEventListener("click", (event) => move(event))
 
         dialogue_container.appendChild(dialogue)
     }
@@ -58,7 +63,8 @@ fetch("http://112.187.184.213:5000/get_passages", {
 // })
 
 
-function move () {
-    // location.href = "{{url_for('static', filename='templates/main2.html')}}";
-    location.href = "title?"
+function move (event) {
+    title = event.srcElement.parentElement.getElementsByClassName("title")[0].innerHTML
+    location.href = "?title=" + title
+    // console.log(title)
 }
