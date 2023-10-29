@@ -120,7 +120,7 @@ def get_synonyms_server():
 
         scores, synonyms = get_synonyms.get_synonyms(word)
 
-        return json.dumps({"synonyms": synonyms})
+        return json.dumps({"synonyms": synonyms, "synonyms_in_sentence": " / ".join(synonyms)})
 
 if __name__ == '__main__':
     # app.run(debug=True)

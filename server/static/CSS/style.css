@@ -78,3 +78,55 @@ main {
     margin: 10px 20px;
     font-size: 15px;
 }
+
+
+/* ---- added ----- */
+
+#synonym_container {
+    display: flex;
+    float: left;
+    height: 30px;
+}
+
+#synonym_input {
+    background-color: #3f3f3f;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    border: 1px solid rgb(98, 98, 98);
+    border-radius: 10px;
+    color: white;
+}
+
+#synonym_input::placeholder {
+    opacity: 0.5;
+    color: whitesmoke;
+}
+
+#synonym_btn {
+    margin-left: 10px;
+    height: 30px;
+    background-color: #7f7c7c;
+    opacity: 0.9;
+    border-radius: 5px;
+    color: white;
+}
+
+#synonyms {
+    margin-left: 25px;
+    overflow: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 300px;
+    height: 20px;
+    background-color: #3f3f3f;
+    color: white;
+    text-align: left;
+    font-size: 15px;
+    padding: 5px 5px;
+    border-radius: 5px; 
+}
+
+#synonyms::-webkit-scrollbar {
+    height: 0px;
+}

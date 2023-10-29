@@ -42,7 +42,7 @@ class Glove:
 
         sorted_syn = sorted_syn[::-1]
 
-        print(sorted_index)
+        # print(sorted_index)
         # syn_dict = {}
 
         # for i in range(len(synonym_words)):

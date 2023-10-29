@@ -7,6 +7,38 @@
 
 var dialogue_container = document.getElementsByClassName("dialogue_container")[0]
 let passages = new Object()
+var synonyms = new Array(0)
+
+const synonyms_text = document.getElementById("synonyms")
+const synonym_btn = document.getElementById("synonym_btn")
+const synonym_input = document.getElementById("synonym_input")
+synonyms_text.innerHTML = "유의어를 검색하지 않았습니다."
+synonyms_text.style.color = "rgba(255, 255, 255, 0.5)"
+
+synonym_btn.addEventListener("click", (event) => {
+    const word = synonym_input.value
+    synonym_input.value = ""
+
+    fetch("http://112.187.184.213:5000/get_synonyms", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+                word: word
+        })
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if(data["synonyms_in_sentence"] == "") {
+            synonyms_text.innerHTML = "유의어를 찾지 못했습니다."
+            synonyms_text.style.color = "rgba(255, 255, 255, 0.5)"
+        } else {
+            synonyms_text.innerHTML = data["synonyms_in_sentence"]
+            synonyms_text.style.color = "rgba(255, 255, 255, 1.0)"
+        }
+    })
+})
 
 fetch("http://112.187.184.213:5000/get_passages", {
     method: "GET",
