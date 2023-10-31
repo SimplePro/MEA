@@ -16,6 +16,14 @@
     </header>
     <main>
         <img src="./icons/add-button.png" id="add_button" style="height: 60px; width: 60px;" alt="add-button">
+        <div id="dialogue_add_section">
+            <p style="margin: 16px auto; font-size: 20px; display: flex; justify-content: center;">지문 추가</p>
+            <input id="dialogue_title_input" type="text" placeholder="Title">
+            <input id="dialogue_passage_input" type="text" placeholder="Passage">
+            <button onclick="send_passage()" id="dialogue_add_btn">
+                <p id="dialogue_add_btn_p" style="display: flex; justify-content: center; font-size: 10px; margin: auto auto;">SUBMIT</p>
+            </button>
+        </div>
         <div id="dialogue_container">
             <div id="dialogue">
                 <img id="dialogue_img" src="./images/karina-from-aespa-life-s-too-short-mv-photoshoot-girls-album-wallpaper-2560x1440_51.jpg" alt="karina">

@@ -39,6 +39,43 @@ header {
     padding-top: 20px;
 }
 
+#dialogue_add_section {
+    display: block;
+    visibility: hidden;
+    position: fixed;
+    margin-left: 85%;
+    margin-top: 90px;
+    width: 200px;
+    height: 300px;
+    border: 1px solid #585858;
+    background-color: #E9E1D6;
+    color: black;
+    border-radius: 20px;
+}
+
+#dialogue_title_input {
+    width: 150px;
+    height: 16px;
+    display: flex;
+    margin: 5px auto;
+}
+
+#dialogue_passage_input {
+    width: 150px;
+    height: 170px;
+    display: flex;
+    margin: 5px auto;
+}
+
+#dialogue_add_btn {
+    display: flex;
+    margin: 10px auto;
+    width: 60px;
+    height: 20px;
+    border: 2px solid #585858;
+    border-radius: 5px;
+}
+
 main {
     padding-top: 60px;
     height: 100%;

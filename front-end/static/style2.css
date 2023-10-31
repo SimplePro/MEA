@@ -90,3 +90,27 @@ main {
     color: #fff;
     background-color: green;
 }
+
+#answer_section {
+    margin: 0px auto;
+    display: flex;
+    height: 80px;
+}
+
+#input_section {
+    display: flex;
+    width: 600px;
+    height: 30px;
+    margin: 25px 10px;
+    align-items: center;
+}
+
+#answer_btn {
+    display: flex;
+    width: 120px;
+    height: 60px;
+    margin: 10px 20px;
+    border: 5px solid #585858;
+    border-radius: 20px;
+    align-items: center;
+}
