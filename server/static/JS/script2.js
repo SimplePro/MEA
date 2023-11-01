@@ -124,6 +124,10 @@ function binkhan_dab_matchugi() {
         right_wrong.innerText = `${index+1}번 입력하세요 | 다시 시도하세요.`;
         document.getElementById("input_section").value = null;
     }
+
+    if(index == dialogue_blank_json.answer.length) {
+        location.reload(true);
+    }
 }
 
 
