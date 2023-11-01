@@ -21,24 +21,15 @@
     </header>
     <main>
         <img src="{{url_for('static', filename='icons/add-button.png')}}" id="add_button" style="height: 60px; width: 60px;" alt="add-button">
+        <div id="dialogue_add_section">
+            <p style="margin: 16px auto; font-size: 20px; display: flex; justify-content: center;">지문 추가</p>
+            <input id="dialogue_title_input" type="text" placeholder="Title">
+            <input id="dialogue_passage_input" type="text" placeholder="Passage">
+            <button onclick="send_passage()" id="dialogue_add_btn">
+                <p id="dialogue_add_btn_p" style="display: flex; justify-content: center; font-size: 10px; margin: auto auto;">SUBMIT</p>
+            </button>
+        </div>
         <div id="dialogue_container", class="dialogue_container">
-            <!-- <div id="dialogue">
-                <img id="dialogue_img" src="{{url_for('static', filename='images/karina-from-aespa-life-s-too-short-mv-photoshoot-girls-album-wallpaper-2560x1440_51.jpg')}}" alt="karina">
-                <div id="dialogue_title">수능_감잡기 2023 4강</div>
-                <hr>
-                <div id="dialogue_desc">/images/karina-from-aespa-life-s-too-short-mv-photoshoot-girls-album-wallpaper-2560x1440_51.jpg</div>
-            </div>
-            <div id="dialogue">
-                <img id="dialogue_img" src="{{url_for('static', filename='images/f47b80b3-ff53-458a-93ef-de69af38b83a.jpg')}}" alt="newjeans">
-                <div id="dialogue_title">수능_감잡기 2023 5강</div>
-                <hr>
-                <div id="dialogue_desc">images/f47b80b3-ff53-458a-93ef-de69af38b83a.jpg</div>
-            </div>
-            <div id="dialogue"></div>
-            <div id="dialogue"></div>
-            <div id="dialogue"></div>
-            <div id="dialogue"></div>
-            <div id="dialogue"></div> -->
         </div>
     </main>
 

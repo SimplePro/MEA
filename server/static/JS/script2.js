@@ -104,7 +104,8 @@ function binkhan_dab_matchugi() {
 
     var right_wrong = document.createElement('div');
     right_wrong.setAttribute("id", "right_wrong");
-    right_wrong.setAttribute("style", "color: #FFFFFF; display: flex;");
+    // right_wrong.setAttribute("style", "color: #FFFFFF; display: flex;");
+    right_wrong.setAttribute("style", "color: #FFFFFF; display: flex; margin: 5px auto; font-size: 15px;");
     document.getElementById("right_wrong_section").appendChild(right_wrong);
     // var right_wrong = document.createElement('div');
     // right_wrong.setAttribute("id","right_wrong");
@@ -113,12 +114,14 @@ function binkhan_dab_matchugi() {
     console.log(input, index);
     if (dialogue_blank_json.answer[index] == input) {
         index++;
-        right_wrong.innerText = "정답!";
+        // right_wrong.innerText = "정답!";
+        right_wrong.innerText = `${index+1}번 입력하세요 | 정답!`;
         document.getElementById("input_section").value = null;
     }
     else {
         index += 0;
-        right_wrong.innerText = "다시 시도하세요.";
+        // right_wrong.innerText = "다시 시도하세요.";
+        right_wrong.innerText = `${index+1}번 입력하세요 | 다시 시도하세요.`;
         document.getElementById("input_section").value = null;
     }
 }
@@ -189,22 +192,24 @@ function scramble_dab_matchugi() {
 
     var right_wrong_sc = document.createElement('div');
     right_wrong_sc.setAttribute("id", "right_wrong_sc");
-    right_wrong_sc.setAttribute("style", "color: #FFFFFF; display: flex;");
+    // right_wrong_sc.setAttribute("style", "color: #FFFFFF; display: flex;");
+    right_wrong_sc.setAttribute("style", "color: #FFFFFF; display: flex; margin: 5px auto; font-size: 15px;");
     document.getElementById("right_wrong_section").appendChild(right_wrong_sc);
 
     var input = document.getElementById("input_section").value;
     console.log(input, idx);
     if (dialogue_scramble_json.answer == input) {
         idx++;
-        right_wrong_sc.innerText = "정답!";
+        // right_wrong_sc.innerText = "정답!";
+        right_wrong_sc.innerText = `정답!`;
         scramble_change();
         document.getElementById("input_section").value = null;
 
     }
     else {
         idx += 0;
-        right_wrong_sc.innerText = "다시 시도하세요.";
+        // right_wrong_sc.innerText = "다시 시도하세요.";
+        right_wrong_sc.innerText = `다시 시도하세요.`;
         document.getElementById("input_section").value = null;
-
     }
 }

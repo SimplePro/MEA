@@ -1,9 +1,51 @@
-// window.onload = function () {
-    
+function dialogue_add_section_show_hide() {
+    var add_btn = document.getElementById("add_button");
+    if(add_btn.style.visibility == "visible"){
+        document.getElementById("dialogue_add_section").style.visibility="hidden";
+    }
+    else{
+        document.getElementById("dialogue_add_section").style.visibility="visible";
+    }
+}
 
+window.onload = function() {
+    var add_btn = document.getElementById("add_button");
+    add_btn.addEventListener('click',dialogue_add_section_show_hide,false);
     // var clicker = document.getElementById("dialogue");
-    // clicker.onclick = move;
-// }
+    // clicker.addEventListener('click',move,false);
+}
+
+function send_passage() {
+    var title = document.getElementById("dialogue_title_input").value;
+    var passage = document.getElementById("dialogue_passage_input").value;
+    document.body.style.opacity = 0.5;
+    document.body.style.pointerEvents = 'none';
+
+    fetch("http://112.187.184.213:5000/upload_passage", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            title: title,
+            passage: passage
+        })
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            document.body.style.opacity = 1.0;
+            document.body.style.pointerEvents = "auto";
+            location.reload(true);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
+    title = '';
+    passage = '';
+
+}
 
 var dialogue_container = document.getElementsByClassName("dialogue_container")[0]
 let passages = new Object()
@@ -115,5 +157,8 @@ function move (event) {
     }
 
     console.log(title)
+    synonyms_text.innerHTML = "유의어를 검색하지 않았습니다."
+    synonyms_text.style.color = "rgba(255, 255, 255, 0.5)"
+
     location.href = "?title=" + title
 }

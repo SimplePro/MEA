@@ -27,6 +27,8 @@ def generate_blank(sentences, word_tokens, blank_index):
     sentence_index = 0
     word_token_index = 0
 
+    blank_number = 1
+
     while word_token_index < len(word_tokens):
         if word_tokens[word_token_index][0] != sentences[sentence_index]:
             result += " "
@@ -36,7 +38,8 @@ def generate_blank(sentences, word_tokens, blank_index):
             if word_token_index in blank_index:
                 # print(word_token_index)
                 answer.append(word_tokens[word_token_index])
-                result += "_" * len(word_tokens[word_token_index])
+                result += f"{blank_number}) " + "_" * len(word_tokens[word_token_index])
+                blank_number += 1
             
             else:
                 result += word_tokens[word_token_index]
