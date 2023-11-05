@@ -1,4 +1,5 @@
-# Memory with AI -> MEA 📚
+# MEA (MEmory with Ai) 📚
+
 
 
 ## (1) Function
